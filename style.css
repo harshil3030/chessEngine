@@ -7,8 +7,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 25px;
-  background-color: cadetblue;
+  margin: 38px;
 }
 .main-container{
   display: grid;
@@ -32,4 +31,4 @@ body {
 }
 .square img{
   width: 100%;
-}
+ }  
