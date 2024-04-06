@@ -15,7 +15,6 @@ for (const i of ArrayofCols) {
 
 //ohk so, given the ids from a1-a8 to h1-h8 now it's time to provide class which indicates which of the element of chess standing where with color-name formate
 
-// setTimeout(() => {}, 10);
 for (let i = 0; i < nameOfCols.length; i++) {
   let ele = document.getElementById(nameOfCols[i] + 2);
   ele.classList.add("black-pawn");
