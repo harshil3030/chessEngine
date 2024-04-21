@@ -17,8 +17,10 @@ export function doColor(arrayOfId) {
                 ele.style.boxShadow = '0 0 3px black, 0 0 3px black, 0 0 3px black, 0 0 3px black';
         }
     }
-
-    changePosition(arrayOfId.slice(1,arrayOfId.length), arrayOfId[0]);
+    console.log(arrayOfId);
+    if (arrayOfId.length > 1) {
+        changePosition(arrayOfId.slice(1,arrayOfId.length), arrayOfId[0]);
+    }
 };
 
 let arrayOfIdAlreadyColoredForAttack = [];
@@ -36,6 +38,8 @@ export function doColorOnAttack(arrayOfId, initialPosition) {
             ele.style.backgroundColor = 'red';
             ele.style.boxShadow = '0 0 3px black, 0 0 3px black, 0 0 3px black, 0 0 3px black';
         }
-        // changePosition(arrayOfId, initialPosition);
+        console.log(initialPosition);
+        console.log(arrayOfId);
+        changePosition(arrayOfId, initialPosition);
     }
 };

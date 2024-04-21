@@ -2,6 +2,7 @@
 // import {doColor} from 'logic/add-color.js'
 import { doColor } from "../add-color.js";
 import { doColorOnAttack } from "../add-color.js";
+import { changePosition } from "./position-changing.js";
 
 const Allsquare = document.querySelectorAll(".square");
 let ArrayOfWhitePawn = [];
@@ -9,21 +10,18 @@ for (let i of Allsquare) {
   let possibleMoves = [];
   let arrayOfIdToBeColored = [i.getAttribute("id")];
   let attackMoves = [];
-  /*****
-   *  take possible-moves[]
-   *  take attack-moves[]
-   * **/
 
   i.addEventListener("click", () => {
     let className = i.getAttribute("class");
+    let currentId;
     if (className.includes("white-pawn")) {
-      let currentId = i.getAttribute("id");
+      currentId = i.getAttribute("id");
 
       for (let x = 1; x <= 2; x++) {
         if ((x === 1 || currentId[1] === "7")) {
           if (parseInt(currentId[1] - x) >= 1) {
             let eleAbove = document.getElementById(currentId[0] + (parseInt(currentId[1]) - x));
-            if (eleAbove.innerHTML.includes("black")) continue;  
+            if (eleAbove.innerHTML.includes("black") || eleAbove.innerHTML.includes("white")) continue;  
             possibleMoves.push(currentId[0] + (parseInt(currentId[1]) - x));       
           }
         }
@@ -36,6 +34,7 @@ for (let i of Allsquare) {
       let rightCorner = currentId[0].charCodeAt(0) + 1;
       rightCorner = String.fromCharCode(rightCorner);
       rightCorner += parseInt(currentId[1]) - 1;
+      
       let leftCornerPiece;
       let rightCornerPiece;
       if (leftCorner[0] >= "a" && leftCorner[1] >= "1") {
@@ -45,7 +44,6 @@ for (let i of Allsquare) {
         rightCornerPiece = document.getElementById(rightCorner);
       }
 
-      console.log(leftCornerPiece);
       if (leftCornerPiece) {
         if (leftCornerPiece.innerHTML.includes("black")) {
           attackMoves.push(leftCorner);
@@ -57,17 +55,12 @@ for (let i of Allsquare) {
           attackMoves.push(rightCorner);
         }
       }
-
-    //   console.log(possibleMoves);
+      console.log(attackMoves);
       arrayOfIdToBeColored.push(...possibleMoves);
-    //   console.log(arrayOfIdToBeColored);
-    //   console.log(leftCornerPiece);
-    //   console.log(rightCornerPiece);
-    //   console.log(rightCorner);
-    //   console.log(attackMoves);
     }
     doColor(arrayOfIdToBeColored);
     doColorOnAttack(attackMoves, i.getAttribute("id"));
+    
     attackMoves = [];
     possibleMoves = [];
     arrayOfIdToBeColored = [i.getAttribute("id")];
